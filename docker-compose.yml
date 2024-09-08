@@ -1,0 +1,19 @@
+volumes:
+  db-data:
+
+networks:
+  intranet:
+    name: intranet
+
+services:
+  database:
+    image: postgres:latest
+    restart: on-failure
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=database
+    volumes:
+      - db-data:/var/lib/postgresql/data
